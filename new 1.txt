@@ -1,0 +1,21 @@
+Player:
+	Desloca [Recebe Input de Coordenadas]
+	Ataca [Raycast]
+	Recebe Dano [Interface]
+	Mira [Raycast/Direção]
+	Coleta Munição [Interface]
+	Recarrega Arma
+	Morre
+	Troca de Arma
+	
+Inimigo:
+	Persegue o Player [Nav Mesh Input pos. do Player]
+	AtacaMorre
+	Recebe Dano [Interface]
+	
+Gerenciador:
+	Criar Inimigos <Kelvin>
+	Criar Munição <Kelvin>
+	Controlar as Ondas [Coroutine] <Kelvin>
+	Verifica o "estado" do Jogador (vivo, morto) <Kelvin>
+	Contar Pontos [UI] <Kelvin>
