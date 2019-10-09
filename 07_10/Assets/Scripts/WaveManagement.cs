@@ -49,9 +49,18 @@ public class WaveManagement : MonoBehaviour
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i <= _wave.count; i++)
+        {
+            SpawnEnemy (_wave.enemy);
+        }
 
-        state = SpawnState.WAITING
+        state = SpawnState.WAITING;
 
         yield break;
-    } 
+    }
+
+    void SpawnEnemy(Transform _enemy)
+    {
+        //Spawn enemy
+        Debug.Log("Spawning Enemy: " + _enemy.name);
+    }
 }
