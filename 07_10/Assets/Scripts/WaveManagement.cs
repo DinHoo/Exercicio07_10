@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManagement : MonoBehaviour
@@ -21,6 +20,8 @@ public class WaveManagement : MonoBehaviour
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
 
+    private float searchCountdown;
+
     private SpawnState state = SpawnState.COUNTING;
 
     private void Start()
@@ -28,14 +29,25 @@ public class WaveManagement : MonoBehaviour
         waveCountdown = timeBetweenWaves;
     }
 
-
-    void Update()
+    private void Update()
     {
-        if(waveCountdown <= 0)
+        if (state == SpawnState.WAITING)
         {
-            if(state != SpawnState.SPAWNING)
+            if (!EnemyIsAlive())
             {
-                //start spawn função
+                WaveCompleted();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (waveCountdown <= 0)
+        {
+            if (state != SpawnState.SPAWNING)
+            {
+                StartCoroutine(SpawnWave(waves[nextWave]));
             }
         }
         else
@@ -44,13 +56,50 @@ public class WaveManagement : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnWave(Wave _wave)
+    void WaveCompleted()
     {
+        Debug.Log("Wave Completed!");
+
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+
+        if(nextWave+1 > waves.Length - 1)
+        {
+            //aqui pode ter um multiplier, ou ir pra uma nova cena, etc.
+            nextWave = 0;
+            Debug.Log("All Waves Completed. Looping...");
+        }
+
+        nextWave++;
+    }
+
+    private bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+
+        if (searchCountdown <= 0f)
+        {
+            searchCountdown = 1f;
+
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private IEnumerator SpawnWave(Wave _wave)
+    {
+        Debug.Log("Spawning Wave!" + _wave.name);
+
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i <= _wave.count; i++)
         {
-            SpawnEnemy (_wave.enemy);
+            SpawnEnemy(_wave.enemy);
+
+            yield return new WaitForSeconds(1f / _wave.rate);
         }
 
         state = SpawnState.WAITING;
@@ -58,9 +107,11 @@ public class WaveManagement : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy)
+    private void SpawnEnemy(Transform _enemy)
     {
-        //Spawn enemy
         Debug.Log("Spawning Enemy: " + _enemy.name);
+
+        //Spawn enemy
+        Instantiate(_enemy, transform.position, transform.rotation);
     }
 }
