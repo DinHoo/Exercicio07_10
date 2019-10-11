@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Bat : Weapon
 {
-    // Start is called before the first frame update
+    bool upgradedBat;
+
     void Start()
     {
-        
+        atkRate = 3f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(upgradedBat == true)
+        {
+            damage = 5;
+        }
+        else
+        {
+            damage = 2;
+        }
+    }
+
+    public override void Attack()
+    {
+        //
     }
 }

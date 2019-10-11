@@ -132,6 +132,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 8095415118772878617, guid: dc34a2cb8b6fdce48b4c566a071f7934,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095415118772878617, guid: dc34a2cb8b6fdce48b4c566a071f7934,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8095415118772878621, guid: dc34a2cb8b6fdce48b4c566a071f7934,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -652,7 +662,7 @@ Transform:
   m_LocalScale: {x: 2.9585, y: 2.9585, z: 2.9585}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420625779
 GameObject:
@@ -731,7 +741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420625779}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 11.77, z: 0}
+  m_LocalPosition: {x: 0, y: 24.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

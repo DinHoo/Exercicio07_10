@@ -1,24 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon
 {
-    private virtual int damage = 0;
 
-    private float atkRate = 0f;
+    //dano da arma
+    public int damage;
 
-    private int ammo = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    //qtddade de munição
+    public int ammo;
+
+
+    //vel de atk da arma
+    public float atkRate;
+
+
+    //quantas balas tem carregadas
+    public int loaded;
+
+    public virtual void Attack()
     {
-        
+        //
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Reload()
     {
-        
+        //
     }
+    public enum Arma
+    {
+        BAT, SHOTGUN
+    };
 }

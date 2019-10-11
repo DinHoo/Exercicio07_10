@@ -20,12 +20,4 @@ public class Player : Atibutos
     }
 
     
-    {
-
-    }
-
-    void attack()
-    {
-        if(isShotgun)
-    }
 }
