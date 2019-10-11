@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Atibutos
+public class Weapon : MonoBehaviour
 {
-    bool isShotgun = true;
+    private virtual int damage = 0;
+
+    private float atkRate = 0f;
+
+    private int ammo = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        life = 30;
         
     }
 
@@ -17,15 +20,5 @@ public class Player : Atibutos
     void Update()
     {
         
-    }
-
-    
-    {
-
-    }
-
-    void attack()
-    {
-        if(isShotgun)
     }
 }

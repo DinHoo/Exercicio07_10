@@ -1,27 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public LayerMask layerMask;
 
-    public float speed;
+    NavMeshAgent nv;
 
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        nv = GetComponent<NavMeshAgent>();
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        if (Input.GetMouseButtonDown(0))
+        {
+            moviment();
+        }
+    }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+    void moviment()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit raycastHit;
 
-        rb.AddForce(movement * speed);
-
+        if (Physics.Raycast(ray, out raycastHit, 200, layerMask))
+        {
+            nv.SetDestination(raycastHit.point);
+        } 
     }
 }
